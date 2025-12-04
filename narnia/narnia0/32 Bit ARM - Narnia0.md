@@ -74,17 +74,17 @@ user@rapberrypi:~/Desktop/raspberrypi5/32Bit$ pwn cyclic -o 100 -l 0x61616166
 >[!Note]
 > x86 - 32 Bit ; LE (Little Endian) from `readelf -h` output; 
 
-![[Pasted image 20251204230446.png]]
+![](assets/Pasted%20image%2020251204230446.png)
 
 * Decompiled code from binary; function name `entry`
 
-![[Pasted image 20251204230718.png]]
+![](assets/Pasted%20image%2020251204230718.png)
 
 * Type conversion from ghidra, conditional check
-![[Pasted image 20251204231027.png]]
+![](assets/Pasted%20image%2020251204231027.png)
 
 * Reads `24` characters of string format; `scanf()`
-![[Pasted image 20251204231654.png]]
+![](assets/Pasted%20image%2020251204231654.png)
 * So the buffer size is confirmed from both `pwn checksec` and `ghidra` analysis
 
 ### Debugging
@@ -540,7 +540,7 @@ Child exited with status 1
 user@rapberrypi:~/Desktop/raspberrypi5/32Bit$
 ```
 - Lets play with endianess now
-![[Pasted image 20251205013233.png]]
+![](assets/Pasted%20image%2020251205013233.png)
 - Even though we have given `0xdeadbeef` as input it is interpreted by the binary as `edx0` which is reverse of `de` from deadbeef
 - This is an *EXPECTED* behaviour as the binary is LSB (little endian); we have to provide the input as `\xef\xbe\xad\xde` 
 - Now we get an different error, even though we have provided the input in the binary expected little endian format
@@ -603,7 +603,7 @@ Breakpoint 1, 0x000104ea in main ()
 Continuing.
 ```
 - We got a shell
-![[Pasted image 20251205014528.png]]
+![](assets/Pasted%20image%2020251205014528.png)
 #### Bypass the conditional check
 - Disassemble the `main` function
 - break at the comparison
@@ -696,7 +696,7 @@ fpscr          0x0                 0
 Continuing.
 ```
 - We got a shell
-![[Pasted image 20251205015659.png]]
+![](assets/Pasted%20image%2020251205015659.png)
 #### Passing bytes to program via python
 
 >[!Note]
